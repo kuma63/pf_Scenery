@@ -1,0 +1,51 @@
+<div class="container">
+  <div>
+    <div>
+      <div class="row">
+        <% if @user.profile_image.attached? %>
+         <%= image_tag @user.profile_image, size: "50x50", class: 'user_icon' %>
+        <% else %>
+         <%= image_tag 'no_image', size: "50x50", class: 'user_icon' %>
+        <% end %>
+        <p><%= @user.nickname %></p>
+      </div>
+      <div class="row">
+        <div>
+          <p>フォロー数</p>
+          <p>0</p>
+        </div>
+        <div>
+          <p>フォロワー数</p>
+          <p>0</p>
+        </div>
+      </div>
+      <div>
+        <%= link_to edit_user_path(@user.id) do %>
+         <i class="fa-solid fa-user-gear"></i>
+        <% end %>
+      </div>
+    </div>
+    <div>
+      <%= form_with model: @photo, url:photos_path, method: :post do |f| %>
+       <div>
+         <p>画像</p>
+         <%= f.file_field :image %>
+       </div>
+       <div>
+         <p>コメント</p>
+         <%= f.text_area :body %>
+       </div>
+       <div>
+         <p>撮影場所</p>
+         <%= f.text_field :address %>
+       </div>
+       <div>
+         <p>タグ(カンマ「,」で区切ってください)</p>
+       </div>
+       <div>
+         <%= f.submit '投稿' %>
+       </div>
+      <% end %>
+    </div>
+  </div>
+</div>

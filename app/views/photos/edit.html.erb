@@ -1,0 +1,23 @@
+<div>
+      <%= form_with model: @photo, url:photo_path(@photo.id), method: :patch do |f| %>
+       <div>
+         <p>画像</p>
+         <%= f.file_field :image %>
+       </div>
+       <div>
+         <p>コメント</p>
+         <%= f.text_area :body %>
+       </div>
+       <div>
+         <p>撮影場所</p>
+         <%= f.text_field :address %>
+       </div>
+       <div>
+         <p>タグ(カンマ「,」で区切ってください)</p>
+       </div>
+       <div>
+         <%= f.submit '変更を保存' %>
+         <%= link_to "戻る", photos_path %>
+       </div>
+      <% end %>
+    </div>
