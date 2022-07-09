@@ -1,11 +1,22 @@
 class PhotosController < ApplicationController
   def index
    @photos = Photo.all
+   @tag_list = Tag.all
    @photo = Photo.new
    @user = current_user
   end
 
   def create
+   @photo = Photo.new(photo_params)
+   @photo.user_id = current_user.id
+   tag_list=params[:photo][:name].split(',')
+   if @photo.save
+    @photo.save_tag(tag_list)
+    redirect_to photos_path
+   else
+    redirect_to :back
+   end
+
   end
 
   def show

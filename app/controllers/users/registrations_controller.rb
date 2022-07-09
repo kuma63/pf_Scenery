@@ -1,15 +1,10 @@
 # frozen_string_literal: true
 
 class Users::RegistrationsController < Devise::RegistrationsController
-  # destroyアクションの前にメールアドレスがゲストユーザー用になっていないか確認する
-  before_action :check_guest, only: [:update, :destroy]
+ 
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
-  def check_guest
-    if resource.email == 'zzz@zzz'
-      redirect_to root_path, alert: 'ゲストユーザーは更新・ログアウトできません。'
-    end
-  end
+  
 
   def after_sign_up_path_for(resource)
     photos_path

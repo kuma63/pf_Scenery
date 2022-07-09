@@ -1,44 +1,43 @@
-<div class="container">
-  <h2>新規登録</h2>
 
-  <div>
-    <%= form_with model: @user, url: user_registration_path do |f| %>
-      <%= render "devise/shared/error_messages", resource: resource %>
-
-      <div class="field row">
-        <p class="col-4">名前</p>
-        <%= f.text_field :name, class: "col-8" %>
-      </div>
-
-      <div class="field row">
-        <p class="col-4">ニックネーム</p>
-        <%= f.text_field :nickname %>
-      </div>
-
-
-      <div class="field row">
-        <p class="col-4">メールアドレス</p>
-        <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-      </div>
-
-      <div class="field row">
-        <p class="col-4">パスワード</p>
-        <% if @minimum_password_length %>
-        <em>(<%= @minimum_password_length %> 文字以上)</em>
-        <% end %>
-        <%= f.password_field :password, autocomplete: "new-password" %>
-      </div>
-
-      <div class="field row">
-        <p class="col-4">パスワード(確認)</p>
-        <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-      </div>
-
-      <div class="actions">
-        <%= f.submit "新規登録" %>
-      </div>
-    <% end %>
-
-    <p>登録済みの方は<%= link_to 'こちら', new_user_session_path %>からログインしてください</p>
+  <div class="container">
+    <h2 class="mt-3 col-3 text-center">新規登録</h2>
+  
+    <div class="justify-content-center">
+      <%= form_with model: @user, url: user_registration_path do |f| %>
+        <%= render "devise/shared/error_messages", resource: resource %>
+  
+        <div class="row mb-3 mt-5">
+          <p class="col-3">名前</p>
+          <%= f.text_field :name, class: "col-5" %>
+        </div>
+  
+        <div class="row mb-3">
+          <p class="col-3">ニックネーム</p>
+          <%= f.text_field :nickname, class: "col-5" %>
+        </div>
+  
+  
+        <div class="row mb-3">
+          <p class="col-3">メールアドレス</p>
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "col-5" %>
+        </div>
+  
+        <div class="row mb-3">
+          <p class="col-3">パスワード(6文字以上)</p>
+          <%= f.password_field :password, autocomplete: "new-password", class: "col-5" %>
+        </div>
+  
+        <div class="row mb-3">
+          <p class="col-3">パスワード(確認)</p>
+          <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "col-5" %>
+        </div>
+  
+        <div class="text-center col-7">
+          <%= f.submit "新規登録", class: "btn btn_form" %>
+        </div>
+      <% end %>
+  
+      <p class="mt-5 col-5 text-center">登録済みの方は<%= link_to 'こちら', new_user_session_path %>からログインしてください</p>
+    </div>
   </div>
-</div>
+

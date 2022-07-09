@@ -1,6 +1,42 @@
 @import '~bootstrap/scss/bootstrap';
 @import '~@fortawesome/fontawesome-free/scss/fontawesome';
 
+*{
+ margin: 0;
+ padding: 0;
+}
+
+h2{
+  background-color: #86C2E7;
+  color: white;
+  border-radius: 5px;
+}
+
+.top_image{
+  width: 100%;
+  height: 800px;
+}
+
+.top_text{
+  width: 30%;
+  height: 200px;
+  margin: auto;
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
 .user_icon{
   border-radius: 50%;
+  width: 70px;
+  height: 70px;
+}
+
+.btn_form{
+  background-color: #86C2E7;
+  color: white;
+}
+
+footer{
+  width: 100%;
+  min-height: 100px;
+  background-color: #86C2E7;
 }

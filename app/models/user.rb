@@ -11,7 +11,7 @@ class User < ApplicationRecord
   has_one_attached :profile_image
   
   def self.guest
-    # ユーザがなければ作成あれば取り出す
+    # ユーザがなければ作成,あれば取り出す
     find_or_create_by!(email: 'zzz@zzz') do |user|
      user.password = SecureRandom.urlsafe_base64
      user.password_confirmation = user.password

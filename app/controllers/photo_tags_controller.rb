@@ -1,0 +1,3 @@
+class PhotoTagsController < ApplicationController
+  
+end
