@@ -6,24 +6,18 @@ class Photo < ApplicationRecord
   has_many :tags, through: :photo_tags
 
   has_one_attached :image
-  
-  def save_tag(sent_tags)
-     # タグが存在していれば、タグの名前を配列として全て取得
-     current_tags = self.tags.pluck(:name) unless self.tags.nil?
-     # 現在取得したタグから送られてきたタグを除いてoldtagとする
-     old_tags = current_tags - sent_tags
-     # 送信されてきたタグから現在存在するタグを除いたタグをnewとする
-     new_tags = sent_tags - current_tags
-     
-     # 古いタグを消す
-     old_tags.each do |old|
-      self.tags.delete　Tag.find_by(name: old)
+
+  def save_tag(tag_list)
+    # すでにタグ付け登録していた場合、紐付いているタグをすべて削除
+     if self.tags != nil
+      photo_tags_records = PhotoTag.where(photo_id: self.id)
+      photo_tags_records.destroy_all
      end
-     
+
      # 新しいタグを保存
-    new_tags.each do |new|
-      new_post_tag = Tag.find_or_create_by(name: new)
-      self.tags << new_post_tag
+     tag_list.each do |tag|
+      inspected_tag = Tag.where(name: tag).first_or_create
+      self.tags << inspected_tag
     end
   end
 end

@@ -1,0 +1,24 @@
+       <h5>新規投稿</h5>
+        <div class="mt-3 pb-3">
+          <%= form_with model: photo, url:photos_path, method: :post do |f| %>
+           <div>
+             <p class="mb-1">画像</p>
+             <%= f.file_field :image %>
+           </div>
+           <div>
+             <p class="mb-1">コメント</p>
+             <%= f.text_area :body %>
+           </div>
+           <div>
+             <p class="mb-1">撮影場所</p>
+             <%= f.text_field :address %>
+           </div>
+           <div>
+             <p class="mb-1">タグ</p>
+             <%= f.text_field :name, placeholder: ",で区切ってください" %>
+           </div>
+           <div class="mt-3">
+             <%= f.submit '投稿', class: "btn btn_form" %>
+           </div>
+          <% end %>
+        </div>
