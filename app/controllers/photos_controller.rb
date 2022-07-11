@@ -1,6 +1,6 @@
 class PhotosController < ApplicationController
   def index
-   @photos = Photo..page(params[:page]).per(6)
+   @photos = Photo.page(params[:page]).per(6)
    @tag_list = Tag.all
    @photo = Photo.new
    @user = current_user
@@ -31,12 +31,19 @@ class PhotosController < ApplicationController
 
   def edit
    @photo = Photo.find(params[:id])
+   @tag_list=@photo.tags.pluck(:name).join(',')
   end
 
   def update
    @photo = Photo.find(params[:id])
-   @Photo.update(photo_params)
-   redirect_to photos_path
+   tag_list = params[:photo][:name].split(',')
+   if @photo.update(photo_params)
+    @photo.save_tag(tag_list)
+    redirect_to photo_path(@photo.id)
+   else
+    render :edit
+   end
+
   end
 
   def destroy
@@ -46,6 +53,11 @@ class PhotosController < ApplicationController
   end
 
   private
+
+  def tag_list
+   params.require(:tag).permit(:name)
+  end
+
 
   def photo_params
    params.require(:photo).permit(:user_id, :image, :body, :address)

@@ -20,13 +20,13 @@
             <% if user_signed_in? %>
 
               <li class="nav-item">
-                マイページ
+                <%= link_to "マイページ", user_path(current_user), class: 'nav-link text-dark' %>
               </li>
               <li class="nav-item">
                 <%= link_to "投稿一覧", photos_path, class: 'nav-link text-dark' %>
               </li>
               <li class="nav-item">
-                ♡いいね
+                <%= link_to "♡いいね", favorites_user_path(current_user), class: 'nav-link text-dark' %>
               </li>
               <li class="nav-item">
                 <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'nav-link text-dark' %>

@@ -1,0 +1,22 @@
+<% photos.each do |photo| %>
+  <div class="card mt-3 mb-3 me-3 shadow" style="height:370px; width: 300px;">
+    <%= link_to photo_path(photo.id) do %>
+      <%= image_tag photo.image, class: "card-img-top", style: "height:200px; width:300px;" %>
+    <% end %>
+    <div class="card-body shadow">
+      <i class="fas fa-tag"></i><%= photo.tags.map(&:name).join(', ') %>
+      <p class="card-text"><%= photo.body %></p>
+      <p class="card-text"><%= photo.address %></p>
+      <p class="card-text">
+        <%= link_to user_path(photo.user.id), class: "text-dark" do %>
+          <% if photo.user.profile_image.attached? %>
+            <%= image_tag photo.user.profile_image, class: 'photo_user_icon' %>
+          <% else %>
+            <%= image_tag 'no_image', class: 'photo_user_icon' %>
+          <% end %>
+          <%= photo.user.nickname %>
+        <% end %>
+      </p>
+    </div>
+  </div>
+<% end %>

@@ -9,27 +9,8 @@
     </div>
 
     <div class="col-9 d-flex flex-wrap justify-content-center">
-     <% @photos.each do |photo| %>
-      <div class="card mt-3 mb-3 me-3 shadow" style="height:350px; width: 200px">
-        <%= link_to photo_path(photo.id) do %>
-         <%= image_tag photo.image, class: "card-img-top", style: "height:150px; width:auto;" %>
-        <% end %>
-          <div class="card-body shadow">
-            <i class="fas fa-tag"><%= photo.tags.map(&:name).join(', ') %></i>
-            <p class="card-text"><%= photo.body %></p>
-            <p class="card-text"><%= photo.address %></p>
-            <p class="card-text">
-             <% if photo.user.profile_image.attached? %>
-              <%= image_tag photo.user.profile_image, class: 'photo_user_icon' %>
-             <% else %>
-              <%= image_tag 'no_image', class: 'photo_user_icon' %>
-             <% end %>
-             <%= photo.user.nickname %>
-            </p>
-          </div>
-      </div>
-     <% end %>
-   </div>
+     <%= render 'index', photos: @photos %>
+    </div>
 
   </div>
   <%= paginate @photos, theme: 'bootstrap-5' %>

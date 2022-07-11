@@ -12,25 +12,32 @@
       <div class="text-center">
        <%= image_tag @photo.image, size: "500x350", class: "mt-5 ms-5" %>
       </div>
-      <p class="text-center">
+
+      <div class="text-center">
+        <%= @photo.body %>
+      </div>
+      <div class="text-center">
+        <%= @photo.address %>
+      </div>
+      <div class="text-center">
+        <i class="fas fa-tag"></i>
         <% @photo_tags.each do |tag| %>
           <%=tag.name%>
         <% end %>
-      </p>
-      <p class="text-center">
-        <%= @photo.body %>
-      </p>
-      <p class="text-center">
-        <%= @photo.address %>
-      </p>
-      <p class="text-center">
+      </div>
+      <div class="row">
+       <div class="col-6 text-end">
         <% if @photo.user.profile_image.attached? %>
           <%= image_tag @photo.user.profile_image, class: 'photo_user_icon' %>
         <% else %>
           <%= image_tag 'no_image', class: 'photo_user_icon' %>
         <% end %>
-        <%= @photo.user.nickname %>
-      </p>
+        <%= link_to @photo.user.nickname, user_path(@photo.user.id), class: "text-dark" %>
+       </div>
+       <div class="favorite_btn_<%= @photo.id %> col-6 text-start ms-0">
+        <%= render 'favorites/favorite-btn', photo: @photo %>
+       </div>
+      </div>
       <div class="text-center">
         <% if current_user == @photo.user %>
          <%= link_to '編集', edit_photo_path(@photo.id), class: "btn btn_form" %>

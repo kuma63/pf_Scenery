@@ -6,7 +6,7 @@
       <%= image_tag 'no_image', size: "50x50", class: 'user_icon' %>
     <% end %>
   </div>
-  <div class="col-9 mt-5"><%= user.nickname %></div>
+  <div class="col-9 mt-5"><%= link_to user.nickname, user_path(user.id), class: "text-dark" %></div>
 </div>
 <div class="row mt-3">
   <div class="col-6">フォロー数</div>

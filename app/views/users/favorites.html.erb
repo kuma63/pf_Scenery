@@ -1,0 +1,9 @@
+<div class="container">
+  <div>
+    <h3 class="mt-5 ms-5 col-3 text-center"><%= current_user.nickname %>さんのいいね一覧</h3>
+    <div class="col-9 d-flex flex-wrap justify-content-center">
+     <%= render 'photos/index', photos: @favorite_photos %>
+    </div>
+    
+  </div>
+</div>
