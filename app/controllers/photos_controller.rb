@@ -24,6 +24,7 @@ class PhotosController < ApplicationController
    @photo = Photo.find(params[:id])
    @user = @photo.user
    @photo_tags = @photo.tags
+   @photo_comment = PhotoComment.new
   end
 
   def photo_map
