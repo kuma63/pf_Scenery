@@ -9,9 +9,9 @@
     </div>
 
     <div class="col-9 d-flex flex-wrap justify-content-center">
-     <%= render 'photos/index', photos: @photos %>
-    </div>
+      <%= render 'photos/index', photos: @photos %>
 
+      <%= paginate @photos, theme: 'bootstrap-5' %>
+    </div>
   </div>
-  <%= paginate @photos, theme: 'bootstrap-5' %>
 </div>

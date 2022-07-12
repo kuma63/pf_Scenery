@@ -25,8 +25,8 @@
           <%=tag.name%>
         <% end %>
       </div>
-      <div class="row">
-       <div class="col-3 text-end">
+      <div class="d-flex flex-row bd-highlight">
+       <div class="ms-5">
         <% if @photo.user.profile_image.attached? %>
           <%= image_tag @photo.user.profile_image, class: 'photo_user_icon' %>
         <% else %>
@@ -35,11 +35,14 @@
         <%= link_to @photo.user.nickname, user_path(@photo.user.id), class: "text-dark" %>
 
        </div>
-       <div class="favorite_btn_<%= @photo.id %> col-4 text-start ms-0">
+       <div class="favorite_btn_<%= @photo.id %> ms-3">
         <%= render 'favorites/favorite-btn', photo: @photo %>
        </div>
-       <div class="col-4">
-        コメント件数：<%= @photo.photo_comments.count %>
+       <div class="col-3 text-end">
+        <i class="fa-solid fa-comment"></i>
+       </div>
+       <div class="comments_count_<%= @photo.id %>">
+        <%= @photo.photo_comments.count %>
        </div>
       </div>
       <div class="text-center">
@@ -51,27 +54,14 @@
     </div>
     <div class="col-4">
       <div class="row">
-       <%= form_with model: [@photo, @photo_comment] do |f| %>
+       <%= form_with model: [@photo, @photo_comment], local: false do |f| %>
         <div class="">
          <%= f.text_area :comment, placeholder: "コメントをここに",class: 'photo-comment col-8 ms-5 me-3 mt-3' %><%= f.submit "送信", class: "col-2 mb-5 btn btn_form" %>
         </div>
        <% end %>
-       <% @photo.photo_comments.each do |photo_comment| %>
-        <div class="t">
-　　　　 <% if photo_comment.user.profile_image.attached? %>
-          <%= image_tag photo_comment.user.profile_image, class: 'user_icon' %>
-         <% else %>
-          <%= image_tag 'no_image', size: "50x50", class: 'user_icon' %>
-         <% end %>
-         <%= photo_comment.user.nickname %>
-         <%= photo_comment.comment %>
-         <% if photo_comment.user == current_user %>
-          <%= link_to photo_photo_comment_path(photo_comment.photo, photo_comment), method: :delete, class: "btn btn-danger" do %>
-           <i class="fa-solid fa-trash-can"></i>
-          <% end %>
-         <% end %>
-        </div>
-       <% end %>
+       <div id="comments_area">
+        <%= render 'photo_comments/index', photo: @photo %>
+       </div>
       </div>
     </div>
 

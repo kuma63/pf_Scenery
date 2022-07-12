@@ -1,0 +1,16 @@
+<% photo.photo_comments.each do |photo_comment| %>
+  <div>
+　　<% if photo_comment.user.profile_image.attached? %>
+      <%= image_tag photo_comment.user.profile_image, class: 'user_icon' %>
+    <% else %>
+      <%= image_tag 'no_image', size: "50x50", class: 'user_icon' %>
+    <% end %>
+    <%= photo_comment.user.nickname %>
+    <%= photo_comment.comment %>
+    <% if photo_comment.user == current_user %>
+      <%= link_to photo_photo_comment_path(photo_comment.photo, photo_comment), method: :delete, remote: true, class: "btn btn-danger" do %>
+       <i class="fa-solid fa-trash-can"></i>
+      <% end %>
+    <% end %>
+  </div>
+<% end %>
