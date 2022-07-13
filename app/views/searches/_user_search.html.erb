@@ -1,14 +1,12 @@
-
-<% if @users.exists? %>
-    <table class="table">
-      <thread>
-        <tr>
-         <th class="col-2">image</th>
-         <th class="col-2">name</th>
-        </tr>
-      </thread>
-    <% @users.each do |user| %>
-     <tbody>
+<table class="table">
+  <thread>
+    <tr>
+     <th class="col-2">image</th>
+     <th class="col-2">name</th>
+    </tr>
+  </thread>
+  <% @users.each do |user| %>
+    <tbody>
       <tr>
         <td class="col-2">
           <% if user.profile_image.attached? %>
@@ -21,12 +19,6 @@
           <%= link_to user.nickname, user_path(user), class: "text-dark" %>
         </td>
       </tr>
-     </tbody>
-    <% end %>
-    </table>
-   <% else %>
-    <p>ユーザーはいません</p>
-   <% end %>
-   <div class="text-center">
-     <%= paginate users %>
-   </div>
+    </tbody>
+  <% end %>
+</table>

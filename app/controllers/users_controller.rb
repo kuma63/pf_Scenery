@@ -21,8 +21,9 @@ class UsersController < ApplicationController
 
  def favorites
   @user = User.find(params[:id])
-  favorites = Favorite.where(user_id: @user.id).pluck(:photo_id)
-  @favorite_photos = Photo.find(favorites)
+  @favorite_photos = Photo.where(id: @user.favorites.pluck(:photo_id)).page(params[:page]).per(6)
+#  @favorites = Favorite.where(user_id: @user.id).pluck(:photo_id)
+#  @favorite_photos = Photo.where(id: favorites).page(params[:page]).per(6)
  end
 
  private

@@ -25,6 +25,12 @@
         <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "col-5" %>
       </div>
 
+      <% if current_user.is_admin? %>
+       <div class="mb-3 text-center">
+         <%= f.radio_button :is_deleted, "false", class: "me-2" %>有効 <%= f.radio_button :is_deleted, "true", class: "me-2" %>退会させる
+       </div>
+      <% end %>
+
       <div class="text-center">
         <div>
           <%= f.submit "変更を保存", class: "btn btn_form" %><%= link_to '戻る', photos_path, class: "btn btn_form ms-5" %>

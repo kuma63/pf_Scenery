@@ -7,7 +7,7 @@
     <% end %>
     <%= photo_comment.user.nickname %>
     <%= photo_comment.comment %>
-    <% if photo_comment.user == current_user %>
+    <% if photo_comment.user == current_user || current_user.is_admin? %>
       <%= link_to photo_photo_comment_path(photo_comment.photo, photo_comment), method: :delete, remote: true, class: "btn btn-danger" do %>
        <i class="fa-solid fa-trash-can"></i>
       <% end %>

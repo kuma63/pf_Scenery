@@ -1,0 +1,9 @@
+<div class="container">
+  <h3 class="mt-3 col-4 text-center">タグ: <%= @tag.name %>の投稿一覧</h3>
+  <div class="col-9 d-flex flex-wrap justify-content-center">
+    <%= render 'index', photos: @photos %>
+    <div class="text-center">
+     <%= paginate @photos, theme: 'bootstrap-5' %>
+    </div>
+  </div>
+</div>

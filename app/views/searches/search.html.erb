@@ -1,0 +1,8 @@
+<duv class="container">
+  <h3>検索結果</h3>
+  <% if @range == "User" %>
+   <%= render 'user_search', users: @users %>
+  <% else %>
+   <%= render 'photos/index', photos: @photos %>
+  <% end %>
+</duv>

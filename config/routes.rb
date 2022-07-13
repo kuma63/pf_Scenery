@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
   # ゲストユーザーが削除機能を使用できないようにするためのルーティング
   devise_for :users, controllers: {
-   registrations: 'users/registrations'
+   registrations: 'users/registrations',
+   sessions: 'users/sessions'
   }
   # デバイスにルーティングを追加する
   devise_scope :user do
@@ -24,8 +25,8 @@ Rails.application.routes.draw do
     get 'followers' => 'relationships#followers', as: 'followers'
   end
 
-  get 'users_search' => 'searches#users_seach'
-  get 'photos_search' => 'searches#photos_search'
-  get 'tags_search' => 'searches#tags_search'
+  get 'search' => 'searches#search'
+  # タグ検索用
+  get 'tags_search' => 'photos#tags_search'
 
 end

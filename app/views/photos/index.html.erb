@@ -9,7 +9,7 @@
     </div>
 
     <div class="col-9 d-flex flex-wrap justify-content-center">
-     <%= render 'index', photos: @photos %>
+     <%= render 'index', photos: @photos, photo_tags: @photo_tags %>
      <div class="text-center">
       <%= paginate @photos, theme: 'bootstrap-5' %>
      </div>

@@ -26,7 +26,11 @@ class ApplicationController < ActionController::Base
 
  protected
 
+ # 退会後のログインを阻止する
+
  def configure_permitted_parameters
    devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :nickname, :is_deleted, :is_admin])
  end
+
+
 end

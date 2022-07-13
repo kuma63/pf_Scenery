@@ -22,7 +22,7 @@
       <div class="text-center">
         <i class="fas fa-tag"></i>
         <% @photo_tags.each do |tag| %>
-          <%=tag.name%>
+          <%= link_to tag.name, tags_search_path(tag_id: tag.id) %>
         <% end %>
       </div>
       <div class="d-flex flex-row bd-highlight">

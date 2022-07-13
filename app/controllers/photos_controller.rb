@@ -53,6 +53,15 @@ class PhotosController < ApplicationController
     redirect_to photos_path
   end
 
+  def tags_search
+    #検索結果画面でもタグ一覧表示
+    @tag_list = Tag.all
+
+    @tag = Tag.find(params[:tag_id])
+
+    @photos = @tag.photos.page(params[:page]).per(6)
+  end
+
   private
 
   def tag_list
