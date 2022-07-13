@@ -1,4 +1,13 @@
        <h5>新規投稿</h5>
+       <% if photo.errors.any? %>
+         <%= photo.errors.count %>件のエラーが発生しました
+         <ul>
+          <% photo.errors.full_messages.each do |message| %>
+           <li><%= message %></li>
+          <% end %>
+         </ul>
+       <% end %>
+
         <div class="mt-3 pb-3">
           <%= form_with model: photo, url:photos_path, method: :post do |f| %>
            <div>

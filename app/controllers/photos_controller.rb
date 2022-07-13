@@ -14,7 +14,7 @@ class PhotosController < ApplicationController
     @photo.save_tag(tag_list)
     redirect_to photo_path(@photo.id)
    else
-    redirect_to :back
+    render :show
    end
 
   end
@@ -56,9 +56,7 @@ class PhotosController < ApplicationController
   def tags_search
     #検索結果画面でもタグ一覧表示
     @tag_list = Tag.all
-
     @tag = Tag.find(params[:tag_id])
-
     @photos = @tag.photos.page(params[:page]).per(6)
   end
 

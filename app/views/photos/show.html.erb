@@ -48,7 +48,7 @@
       <div class="text-center">
         <% if current_user == @photo.user %>
          <%= link_to '編集', edit_photo_path(@photo.id), class: "btn btn_form" %>
-         <%= link_to "削除", photo_path(@photo.id), method: :delete, class: "btn btn_form ms-5" %>
+         <%= link_to "削除", photo_path(@photo.id), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn_form ms-5" %>
         <% end %>
        </div>
     </div>

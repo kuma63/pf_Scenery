@@ -5,6 +5,10 @@ class Photo < ApplicationRecord
   has_many :photo_tags, dependent: :destroy, foreign_key: 'photo_id'
   has_many :tags, through: :photo_tags
 
+  validates :body, presence: true
+  validates :image, presence: true
+  validates :address, presence: true
+
   has_one_attached :image
 
   def save_tag(tags)
@@ -33,8 +37,6 @@ class Photo < ApplicationRecord
   def self.looks(search, word)
     if  search == "partial_match"
       @photo = Photo.where("body LIKE? OR address LIKE?","%#{word}%","%#{word}%")
-    else
-      @photo = Photo.all
     end
   end
 end

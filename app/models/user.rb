@@ -14,17 +14,14 @@ class User < ApplicationRecord
   has_many :follower, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
   has_many :followings, through: :follower, source: :followed
 
+  validates :name, presence: true
+  validates :nickname, presence: true
+  validates :is_deleted, presence: true
+  validates :is_admin, presence: true
+
   has_one_attached :profile_image
 
-  def self.guest
-    # ユーザがなければ作成,あれば取り出す
-    find_or_create_by!(email: 'zzz@zzz') do |user|
-     user.password = SecureRandom.urlsafe_base64
-     user.password_confirmation = user.password
-     user.name = 'ゲスト'
-     user.nickname = 'ゲスト'
-    end
-  end
+ 
 
    # ユーザーをフォローする
   def follow(user_id)
@@ -38,13 +35,11 @@ class User < ApplicationRecord
   def following?(user)
    followings.include?(user)
   end
-  
+
   # 検索方法分岐
   def self.looks(search, word)
     if search == "partial_match"
-      @user = User.where("name LIKE?","%#{word}%")
-    else
-      @user = User.all
+      @user = User.where("nickname LIKE?","%#{word}%")
     end
   end
 

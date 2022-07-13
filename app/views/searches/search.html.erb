@@ -1,8 +1,12 @@
 <duv class="container">
-  <h3>検索結果</h3>
-  <% if @range == "User" %>
-   <%= render 'user_search', users: @users %>
-  <% else %>
-   <%= render 'photos/index', photos: @photos %>
+  <h3 class="mt-3 ms-5 col-3 text-center"><%= @word %>の検索結果</h3>
+  <% unless current_user.is_deleted? %>
+    <% if @range == "User" %>
+     <%= render 'user_search', users: @users %>
+    <% else %>
+      <div class="col-9 d-flex flex-wrap justify-content-center">
+       <%= render 'photos/index', photos: @photos %>
+      </div>
+    <% end %>
   <% end %>
 </duv>
