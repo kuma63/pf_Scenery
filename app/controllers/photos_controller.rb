@@ -1,6 +1,13 @@
 class PhotosController < ApplicationController
   def index
-   @photos = Photo.page(params[:page]).per(6)
+   if params[:latest]
+    @photos = Photo.latest.page(params[:page]).per(6)
+   elsif params[:old]
+    @photos = Photo.old.page(params[:page]).per(6)
+   else
+    # いいねが多い順に並び替える
+    @photos = Photo.select('photos.*', 'count(favorites.id) AS favs').left_joins(:favorites).group('photos.id').order('favs desc').page(params[:page]).per(6)
+   end
    @tag_list = Tag.all
    @photo = Photo.new
    @user = current_user
@@ -10,11 +17,15 @@ class PhotosController < ApplicationController
    @photo = Photo.new(photo_params)
    @photo.user_id = current_user.id
    tag_list = params[:photo][:name].split(',')
+
    if @photo.save
     @photo.save_tag(tag_list)
     redirect_to photo_path(@photo.id)
    else
-    render :show
+    @photos = Photo.page(params[:page]).per(6)
+    @tag_list = Tag.all
+    @user = current_user
+    render :index
    end
 
   end
@@ -28,6 +39,7 @@ class PhotosController < ApplicationController
   end
 
   def photo_map
+   @photo = Photo.find(params[:id])
   end
 
   def edit

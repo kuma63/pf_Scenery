@@ -1,7 +1,7 @@
 <div class="container">
   <div>
     <h3 class="mt-5 ms-5 col-3 text-center"><%= current_user.nickname %>さんのいいね一覧</h3>
-    <div class="col-9 d-flex flex-wrap justify-content-center">
+    <div class="col-9">
      <%= render 'photos/index', photos: @favorite_photos %>
      <%= paginate @favorite_photos, theme: 'bootstrap-5' %>
     </div>

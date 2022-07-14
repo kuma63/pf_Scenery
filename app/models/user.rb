@@ -21,7 +21,7 @@ class User < ApplicationRecord
 
   has_one_attached :profile_image
 
- 
+
 
    # ユーザーをフォローする
   def follow(user_id)

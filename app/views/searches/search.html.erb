@@ -4,7 +4,7 @@
     <% if @range == "User" %>
      <%= render 'user_search', users: @users %>
     <% else %>
-      <div class="col-9 d-flex flex-wrap justify-content-center">
+      <div class="col-9">
        <%= render 'photos/index', photos: @photos %>
       </div>
     <% end %>

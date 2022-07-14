@@ -18,6 +18,9 @@
       </div>
       <div class="text-center">
         <%= @photo.address %>
+        <%= link_to photo_map_photo_path(@photo) do %>
+         <i class="fa-solid fa-map-location-dot"></i>
+        <% end %>
       </div>
       <div class="text-center">
         <i class="fas fa-tag"></i>

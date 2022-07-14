@@ -2,10 +2,13 @@ Rails.application.routes.draw do
   devise_for :users, controllers: {
    sessions: 'users/sessions'
   }
- 
+
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   root to: 'homes#top'
-  resources :photos, only: [:create, :index, :show, :photo_map, :edit, :update, :destroy] do
+  resources :photos, only: [:create, :index, :show, :edit, :update, :destroy] do
+    member do
+      get 'photo_map' => 'photos#photo_map', as: 'photo_map'
+    end
 
     resource :favorites, only: [:create, :destroy]
     resources :photo_comments, only: [:create, :destroy]

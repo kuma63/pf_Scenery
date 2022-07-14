@@ -1,27 +1,34 @@
-<% photos.each do |photo| %>
-  <div class="card mt-3 mb-3 me-3 shadow" style="height:370px; width: 300px;">
-    <%= link_to photo_path(photo.id) do %>
-      <%= image_tag photo.image, class: "card-img-top", style: "height:170px; width:300px;" %>
-    <% end %>
-    <div class="card-body shadow">
-      <p>
-       <i class="fas fa-tag"></i>
-       <% photo.tags.each do |tag| %>
-         <%= link_to tag.name, tags_search_path(tag.id) %>
-       <% end %>
-      </p>
-      <p class="card-text"><%= photo.body %></p>
-      <p class="card-text"><%= photo.address %></p>
-      <p class="card-text">
-        <%= link_to user_path(photo.user.id), class: "text-dark" do %>
-          <% if photo.user.profile_image.attached? %>
-            <%= image_tag photo.user.profile_image, class: 'photo_user_icon' %>
-          <% else %>
-            <%= image_tag 'no_image', class: 'photo_user_icon' %>
+<%= link_to '新しい順', photos_path(latest: "true") %>
+|<%= link_to '古い順', photos_path(old: "true") %>
+|<%= link_to '人気順', photos_path %>
+
+<div class="d-flex flex-wrap justify-content-center">
+  <% photos.each do |photo| %>
+    <div class="card mt-3 mb-3 me-3 shadow" style="height:370px; width: 300px;">
+      <%= link_to photo_path(photo.id) do %>
+        <%= image_tag photo.image, class: "card-img-top", style: "height:170px; width:300px;" %>
+      <% end %>
+      <div class="card-body shadow">
+        <p>
+         <i class="fas fa-tag"></i>
+         <% photo.tags.each do |tag| %>
+           <%= link_to tag.name, tags_search_path(tag.id) %>
+         <% end %>
+        </p>
+        <p class="card-text"><%= photo.body %></p>
+        <p class="card-text"><%= photo.address %></p>
+        <p class="card-text">
+          <%= link_to user_path(photo.user.id), class: "text-dark" do %>
+            <% if photo.user.profile_image.attached? %>
+              <%= image_tag photo.user.profile_image, class: 'photo_user_icon' %>
+            <% else %>
+              <%= image_tag 'no_image', class: 'photo_user_icon' %>
+            <% end %>
+            <%= photo.user.nickname %>
           <% end %>
-          <%= photo.user.nickname %>
-        <% end %>
-      </p>
+           ♥<%= photo.favorites.count %>
+        </p>
+      </div>
     </div>
-  </div>
-<% end %>
+  <% end %>
+</div>

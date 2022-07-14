@@ -8,7 +8,7 @@
         <%= render 'photos/form', photo: @photo %>
     </div>
 
-    <div class="col-9 d-flex flex-wrap justify-content-center">
+    <div class="col-9">
       <%= render 'photos/index', photos: @photos %>
 
       <%= paginate @photos, theme: 'bootstrap-5' %>
