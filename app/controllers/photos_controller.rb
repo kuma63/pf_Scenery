@@ -40,6 +40,7 @@ class PhotosController < ApplicationController
 
   def photo_map
    @photo = Photo.find(params[:id])
+   
   end
 
   def edit
