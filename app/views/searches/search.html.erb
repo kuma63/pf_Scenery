@@ -3,9 +3,11 @@
   <% unless current_user.is_deleted? %>
     <% if @range == "User" %>
      <%= render 'user_search', users: @users %>
+     <%= paginate @users, theme: 'bootstrap-5' %>
     <% else %>
       <div class="col-9">
        <%= render 'photos/index', photos: @photos %>
+       <%= paginate @photos, theme: 'bootstrap-5' %>
       </div>
     <% end %>
   <% end %>

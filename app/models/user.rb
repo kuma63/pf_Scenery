@@ -16,8 +16,6 @@ class User < ApplicationRecord
 
   validates :name, presence: true
   validates :nickname, presence: true
-  validates :is_deleted, presence: true
-  validates :is_admin, presence: true
 
   has_one_attached :profile_image
 

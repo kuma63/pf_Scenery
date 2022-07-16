@@ -40,7 +40,7 @@ class PhotosController < ApplicationController
 
   def photo_map
    @photo = Photo.find(params[:id])
-   
+
   end
 
   def edit
@@ -81,7 +81,7 @@ class PhotosController < ApplicationController
 
 
   def photo_params
-   params.require(:photo).permit(:user_id, :image, :body, :address)
+   params.require(:photo).permit(:user_id, :image, :body, :address, :longitude, :latitude)
   end
 
 end

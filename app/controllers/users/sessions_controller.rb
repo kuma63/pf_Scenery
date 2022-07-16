@@ -1,11 +1,12 @@
 class Users::SessionsController < Devise::SessionsController
   before_action :user_state, only: [:create]
 
-  def create
-    super
-  end
+  # def create
+    # super
+  # end
 
 private
+
   def user_state
     @user = User.find_by(email: params[:user][:email])
     return if !@user

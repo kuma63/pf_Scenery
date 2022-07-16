@@ -12,8 +12,12 @@ class UsersController < ApplicationController
 
  def update
   @user = User.find(params[:id])
-  @user = User.update(user_params)
-  redirect_to photos_path
+  if @user = User.update(user_params)
+   redirect_to photos_path
+  else
+   render :edit
+  end
+
  end
 
 
