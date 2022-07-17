@@ -1,3 +1,0 @@
-class PhotoTagsController < ApplicationController
-  
-end

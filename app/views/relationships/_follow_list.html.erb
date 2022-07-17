@@ -1,12 +1,12 @@
 
 <% if @users.exists? %>
-    <table class="table">
-      <thread>
-        <tr>
-         <th class="col-2">image</th>
-         <th class="col-2">name</th>
-        </tr>
-      </thread>
+  <table class="table">
+    <thread>
+     <tr>
+      <th class="col-2">image</th>
+      <th class="col-2">name</th>
+     </tr>
+    </thread>
     <% @users.each do |user| %>
      <tbody>
       <tr>
@@ -23,10 +23,10 @@
       </tr>
      </tbody>
     <% end %>
-    </table>
-   <% else %>
-    <p>ユーザーはいません</p>
-   <% end %>
-   <div class="text-center">
-     <%= paginate users %>
-   </div>
+  </table>
+<% else %>
+  <p>ユーザーはいません</p>
+<% end %>
+<div class="text-center">
+  <%= paginate users %>
+</div>

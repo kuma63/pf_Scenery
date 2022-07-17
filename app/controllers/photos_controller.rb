@@ -1,4 +1,5 @@
 class PhotosController < ApplicationController
+
   def index
    if params[:latest]
     @photos = Photo.latest.page(params[:page]).per(6)
@@ -8,6 +9,7 @@ class PhotosController < ApplicationController
     # いいねが多い順に並び替える
     @photos = Photo.select('photos.*', 'count(favorites.id) AS favs').left_joins(:favorites).group('photos.id').order('favs desc').page(params[:page]).per(6)
    end
+
    @tag_list = Tag.all
    @photo = Photo.new
    @user = current_user
@@ -40,7 +42,6 @@ class PhotosController < ApplicationController
 
   def photo_map
    @photo = Photo.find(params[:id])
-
   end
 
   def edit
@@ -67,7 +68,6 @@ class PhotosController < ApplicationController
   end
 
   def tags_search
-    #検索結果画面でもタグ一覧表示
     @tag_list = Tag.all
     @tag = Tag.find(params[:tag_id])
     @photos = @tag.photos.page(params[:page]).per(6)

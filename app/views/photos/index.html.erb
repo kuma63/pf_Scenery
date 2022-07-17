@@ -1,26 +1,26 @@
 <div class="container">
   <div class="row">
    <div class="col-3 border-end">
-        <div class="mb-5 ">
-          <%= render 'users/mypage', user: @user %>
-        </div>
-        <% if @photo.errors.any? %>
-         <%= @photo.errors.count %>件のエラーが発生しました
-         <ul>
+    <div class="mb-5 ">
+      <%= render 'users/mypage', user: @user %>
+    </div>
+    <% if @photo.errors.any? %>
+      <%= @photo.errors.count %>件のエラーが発生しました
+        <ul>
           <% @photo.errors.full_messages.each do |message| %>
            <li><%= message %></li>
           <% end %>
-         </ul>
-       <% end %>
-        <%= render 'form', photo: @photo %>
-    </div>
+        </ul>
+    <% end %>
+    <%= render 'form', photo: @photo %>
+   </div>
 
     <div class="col-9">
+       <%= link_to '新しい順', photos_path(latest: "true") %>
+       |<%= link_to '古い順', photos_path(old: "true") %>
+       |<%= link_to '人気順', photos_path %>
        <%= render 'index', photos: @photos, photo_tags: @photo_tags %>
        <%= paginate @photos, theme: 'bootstrap-5' %>
-     </div>
     </div>
-
   </div>
-
 </div>

@@ -12,7 +12,7 @@ class UsersController < ApplicationController
 
  def update
   @user = User.find(params[:id])
-  if @user = User.update(user_params)
+  if @user.update(user_params)
    redirect_to photos_path
   else
    render :edit
@@ -24,9 +24,6 @@ class UsersController < ApplicationController
  def favorites
   @user = User.find(params[:id])
   @favorite_photos = Photo.where(id: @user.favorites.pluck(:photo_id)).page(params[:page]).per(6)
-#  @favorites = Favorite.where(user_id: @user.id).pluck(:photo_id)
-#  @favorite_photos = Photo.where(id: favorites).page(params[:page]).per(6)
-# この二つをまとめた記述
  end
 
  private
