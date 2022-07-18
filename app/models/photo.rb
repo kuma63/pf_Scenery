@@ -20,20 +20,20 @@ class Photo < ApplicationRecord
       old_tags = current_tags - tags
       new_tags = tags - current_tags
 
-    PhotoTag.transaction do
+    # PhotoTag.transaction do
        # Destroy
        old_tags.each do |old_name|
          self.tags.delete Tag.find_by(name:old_name)
        end
-    end
+    # end
 
-    PhotoTag.transaction do
+    # PhotoTag.transaction do
      # Create
      new_tags.each do |new_name|
        photo_tag = Tag.find_or_create_by(name:new_name)
        self.tags << photo_tag
      end
-    end
+    # end
 
   end
 
