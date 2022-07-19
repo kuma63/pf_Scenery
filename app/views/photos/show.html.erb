@@ -18,7 +18,7 @@
       <div class="text-center">
         <%= @photo.address %>
         <%= link_to photo_map_photo_path(@photo) do %>
-         <i class="fa-solid fa-map-location-dot"></i>
+         <i class="fas fa-map-marked-alt"></i>
         <% end %>
       </div>
       <div class="text-center">
@@ -41,7 +41,7 @@
          </div>
          <div class="row">
            <div class="col-1">
-            <i class="fa-solid fa-comment"></i>
+            <i class="fas fa-comment"></i>
            </div>
            <div class="comments_count_<%= @photo.id %> col-1">
             <%= @photo.photo_comments.count %>

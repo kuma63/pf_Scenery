@@ -30,7 +30,7 @@
 <div>
  <% if user == current_user || current_user.is_admin? %>
   <%= link_to edit_user_path(user.id), class: "btn btn_form w-75 mt-3" do %>
-    <i class="fa-solid fa-user-gear"></i>
+    <i class="fas fa-user-cog"></i>
   <% end %>
  <% end %>
 </div>
