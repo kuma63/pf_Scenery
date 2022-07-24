@@ -1,0 +1,2 @@
+$("#followers_count").html("<%= j(link_to @user.followers.count, user_followers_path(@user)) %>");
+$("#follow_btn").html("<%= j(render 'follow_btn', { user: @user }) %>");
