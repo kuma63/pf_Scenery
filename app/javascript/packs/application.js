@@ -13,6 +13,8 @@ import "jquery";
 import "bootstrap";
 import "../stylesheets/application"
 import '@fortawesome/fontawesome-free/js/all'
+import "../src/application.css"
+const images = require.context("../images/", true)
 
 Rails.start()
 Turbolinks.start()
