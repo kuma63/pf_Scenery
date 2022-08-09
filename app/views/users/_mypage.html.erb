@@ -3,7 +3,7 @@
     <% if user.profile_image.attached? %>
       <%= image_tag user.profile_image, class: 'user_icon' %>
     <% else %>
-      <%= image_tag 'no_image', size: "50x50", class: 'user_icon' %>
+      <%= image_pack_tag 'no_image', size: "50x50", class: 'user_icon' %>
     <% end %>
   </div>
   <div class="col-3 mt-5"><%= link_to user.nickname, user_path(user.id), class: "text-dark" %></div>
