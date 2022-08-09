@@ -32,7 +32,7 @@
           <% if @photo.user.profile_image.attached? %>
             <%= image_tag @photo.user.profile_image, class: 'photo_user_icon' %>
           <% else %>
-            <%= image_pack_tag 'no_image', class: 'photo_user_icon' %>
+            <%= image_pack_tag 'no_image.jpg', class: 'photo_user_icon' %>
           <% end %>
           <%= link_to @photo.user.nickname, user_path(@photo.user.id), class: "text-dark" %>
          </div>
