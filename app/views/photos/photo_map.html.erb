@@ -6,12 +6,21 @@
 <div type="text/javascript">
   <script>
     function initMap(){
+      let myLatLng = {lat: <%= @photo.latitude %>, lng: <%= @photo.longitude %> };
+
       let map = new google.maps.Map(document.getElementById('map'), {
-        center: {lat: <%= @photo.latitude %>, lng: <%= @photo.longitude %> },
+        center: myLatLng,
         zoom: 15
+      });
+
+      let marker = new google.maps.Marker({
+        position: myLatLng,
+        map: map,
+        animation: google.maps.Animation.BOUNCE
       });
   　}
   </script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['API_KEY'] %>&callback=initMap" async defer></script>
 </div>
 <div>
   <%= link_to '戻る', photo_path(@photo), class: "btn btn_form ms-5 mt-3" %>
