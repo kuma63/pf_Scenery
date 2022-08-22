@@ -47,6 +47,11 @@ class PhotosController < ApplicationController
   def edit
    @photo = Photo.find(params[:id])
    @tag_list=@photo.tags.pluck(:name).join(',')
+   if @photo.user == current_user
+    render "edit"
+   else
+    redirect_to photos_path
+   end
   end
 
   def update
