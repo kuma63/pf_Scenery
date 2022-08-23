@@ -25,6 +25,7 @@
             <%= photo.user.nickname %>
           <% end %>
            ♥<%= photo.favorites.count %>
+          <%= photo.created_at.strftime('%Y/%m/%d %H:%M') %>
         </p>
       </div>
     </div>
