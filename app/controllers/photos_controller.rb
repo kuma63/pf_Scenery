@@ -40,10 +40,6 @@ class PhotosController < ApplicationController
    @photo_comment = PhotoComment.new
   end
 
-  def photo_map
-   @photo = Photo.find(params[:id])
-  end
-
   def edit
    @photo = Photo.find(params[:id])
    @tag_list=@photo.tags.pluck(:name).join(',')

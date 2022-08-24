@@ -17,9 +17,6 @@
       </div>
       <div class="text-center">
         <%= @photo.address %>
-        <%= link_to photo_map_photo_path(@photo) do %>
-         <i class="fas fa-map-marked-alt"></i>
-        <% end %>
       </div>
       <div class="text-center">
         <i class="fas fa-tag"></i>
@@ -56,6 +53,31 @@
          <%= link_to '編集', edit_photo_path(@photo.id), class: "btn btn_form" %>
          <%= link_to "削除", photo_path(@photo.id), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn_form ms-5" %>
         <% end %>
+      </div>
+
+      <h4 class="mt-4 text-center"><i class="fas fa-map-marked-alt"></i></h4>
+      <div class="map mt-2 mb-3 ms-5 ps-5">
+        <div id="map">
+        </div>
+      </div>
+      <div type="text/javascript">
+        <script>
+         function initMap(){
+          let myLatLng = {lat: <%= @photo.latitude %>, lng: <%= @photo.longitude %> };
+
+          let map = new google.maps.Map(document.getElementById('map'), {
+            center: myLatLng,
+            zoom: 15
+          });
+
+          let marker = new google.maps.Marker({
+            position: myLatLng,
+            map: map,
+            animation: google.maps.Animation.BOUNCE
+            });
+         }
+        </script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['API_KEY'] %>&callback=initMap" async defer></script>
       </div>
     </div>
     <div class="col-4">
