@@ -48,3 +48,13 @@ footer{
   height: 300px;
   width: 400px;
 }
+
+.thumbnail{
+  height: 170px;
+	object-fit: contain;
+}
+
+.thumbnail_show{
+  height: 350px;
+  object-fit: contain;
+}

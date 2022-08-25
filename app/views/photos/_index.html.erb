@@ -4,7 +4,7 @@
   <% photos.each do |photo| %>
     <div class="card mt-3 mb-3 me-3 shadow" style="height:370px; width: 300px;">
       <%= link_to photo_path(photo.id) do %>
-        <%= image_tag photo.image, class: "card-img-top", style: "height:170px; width:300px;" %>
+        <%= image_tag photo.image, class: "card-img-top thumbnail" %>
       <% end %>
       <div class="card-body shadow">
         <p>
