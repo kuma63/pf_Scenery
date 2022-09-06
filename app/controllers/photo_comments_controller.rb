@@ -4,6 +4,7 @@ class PhotoCommentsController < ApplicationController
     @comment = current_user.photo_comments.new(photo_comment_params)
     @comment.photo_id = @photo.id
     @comment.save
+    @photo.create_notification_comment!(current_user, @comment.id)
    end
 
    def destroy

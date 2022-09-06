@@ -4,6 +4,7 @@ class FavoritesController < ApplicationController
     @photo = Photo.find(params[:photo_id])
     favorite = current_user.favorites.new(photo_id: @photo.id)
     favorite.save
+    @photo.create_notification_like!(current_user)
   end
 
   def destroy

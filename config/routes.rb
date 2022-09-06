@@ -27,4 +27,6 @@ Rails.application.routes.draw do
   # タグ検索用
   get 'tags_search' => 'photos#tags_search'
 
+  resources :notifications, only: [:index]
+
 end
